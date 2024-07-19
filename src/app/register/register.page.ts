@@ -1,28 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonButton, IonButtons,
-  IonContent,
-  IonHeader,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
-import { ToastController } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import {AuthService} from "../services/auth.service";
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.page.html',
+  templateUrl: './register.page.html', // Corrigir o caminho do template
   styleUrls: ['./register.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonInput, IonButton, IonButtons]
+  imports: [IonicModule, CommonModule, FormsModule]
 })
-export class RegisterPage  {
+export class RegisterPage {
   name: string = '';
   email: string = '';
   password: string = '';
@@ -50,6 +40,7 @@ export class RegisterPage  {
       this.router.navigate(['/profile']); // Redirecionar para a página de perfil após registro bem-sucedido
     } catch (error) {
       const toast = await this.toastController.create({
+        message: (error as Error).message, // Mostrar a mensagem de erro
         duration: 2000,
         color: 'danger'
       });

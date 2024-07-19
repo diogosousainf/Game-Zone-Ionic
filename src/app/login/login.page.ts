@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -12,9 +12,8 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import { ToastController } from '@ionic/angular';
-import {Router, RouterLink} from '@angular/router';
-import {AuthService} from "../services/auth.service";
-
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +22,7 @@ import {AuthService} from "../services/auth.service";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonInput, IonButton, RouterLink]
 })
-export class LoginPage  {
+export class LoginPage {
   email: string = '';
   password: string = '';
 
