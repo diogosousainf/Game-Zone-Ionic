@@ -5,7 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { StorageModule } from 'src/app/storage.module';
 import { UserGameService } from 'src/app/services/user-game.service';
-import {AuthService} from "../../services/auth.service";
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-user-lists',
   templateUrl: './user-lists.page.html',

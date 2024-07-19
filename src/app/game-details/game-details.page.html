@@ -26,10 +26,7 @@
   <ion-item>
     <ion-label>Choose a list</ion-label>
     <ion-select [(ngModel)]="selectedList">
-      <ion-select-option value="playLater">Play Later</ion-select-option>
-      <ion-select-option value="currentlyPlaying">Currently Playing</ion-select-option>
-      <ion-select-option value="played">Played</ion-select-option>
-      <ion-select-option value="completed">Completed</ion-select-option>
+      <ion-select-option *ngFor="let list of lists" [value]="list">{{ list }}</ion-select-option>
     </ion-select>
   </ion-item>
 

@@ -22,6 +22,8 @@ export class GameDetailsPage implements OnInit {
   game: any;
   selectedList: string = '';
   userId: string = '';
+  lists: string[] = ['playLater', 'currentlyPlaying', 'played', 'completed'];
+  gameInList: { [key: string]: boolean } = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -42,11 +44,20 @@ export class GameDetailsPage implements OnInit {
 
     const user = await this.authService.getUser();
     this.userId = user.id;
+
+    await this.checkIfGameInList();
+  }
+
+  async checkIfGameInList() {
+    for (const list of this.lists) {
+      this.gameInList[list] = await this.userGameService.isGameInList(list, this.userId, this.game.id);
+    }
   }
 
   async addToList() {
     try {
       await this.userGameService.addToList(this.selectedList, this.userId, this.game.id);
+      this.gameInList[this.selectedList] = true;
       this.presentToast('Game added to list', 'success');
     } catch (error) {
       this.presentToast('Failed to add game to list', 'danger');
@@ -56,6 +67,7 @@ export class GameDetailsPage implements OnInit {
   async removeFromList() {
     try {
       await this.userGameService.removeFromList(this.selectedList, this.userId, this.game.id);
+      this.gameInList[this.selectedList] = false;
       this.presentToast('Game removed from list', 'success');
     } catch (error) {
       this.presentToast('Failed to remove game from list', 'danger');

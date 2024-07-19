@@ -26,6 +26,11 @@ export class UserGameService {
     }
   }
 
+  async isGameInList(listName: string, userId: string, gameId: string): Promise<boolean> {
+    const response = await axios.get(`${this.apiUrl}?listName=${listName}&userId=${userId}&gameId=${gameId}`);
+    return response.data.length > 0;
+  }
+
   private generateId(): string {
     return Math.random().toString(36).substr(2, 9);
   }
