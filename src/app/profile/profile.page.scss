@@ -5,3 +5,19 @@ ion-item {
 img {
   border-radius: 50%;
 }
+.avatar-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  margin: 10px auto;
+}
+
+ion-item {
+  --inner-padding-end: 0;
+}
+
+ion-thumbnail {
+  --size: 60px;
+  border-radius: 10px;
+}

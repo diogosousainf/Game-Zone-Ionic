@@ -31,6 +31,11 @@ export class ProfilePage implements OnInit {
   ) {}
 
   async ngOnInit() {
+    const isLoggedIn = await this.authService.isLoggedIn();
+    if (!isLoggedIn) {
+      this.router.navigate(['/login']);
+      return;
+    }
     this.user = await this.authService.getUser();
     this.loadLists();
   }
@@ -59,6 +64,7 @@ export class ProfilePage implements OnInit {
 
   async removeAvatar() {
     this.user.avatar = null;
+    await this.authService.updateUser(this.user);
   }
 
   async removeFromList(gameId: string, listName: string) {
