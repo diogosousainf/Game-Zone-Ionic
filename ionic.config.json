@@ -1,0 +1,7 @@
+{
+  "name": "FreeGameFinder",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
