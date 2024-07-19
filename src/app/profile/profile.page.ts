@@ -1,64 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { IonicModule, ToastController } from '@ionic/angular';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import {AuthService} from "../services/auth.service";
-import {FormsModule} from "@angular/forms";
+import { AuthService } from '../services/auth.service';
+import { PersonalizedListService } from '../services/personalized-list.service';
+import { FormsModule } from '@angular/forms';
+import {CommonModule} from "@angular/common";
+import {IonicModule} from "@ionic/angular"; // Certifique-se de importar FormsModule
+
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule], // Adicione FormsModule
+  schemas: [CUSTOM_ELEMENTS_SCHEMA] // AdiModule
 })
 export class ProfilePage implements OnInit {
-  user: any = {
-    id: '',
-    name: '',
-    email: '',
-    password: '',
-    avatar: null
+  user: any = {};
+  lists: any = {
+    playLater: [],
+    currentlyPlaying: [],
+    played: [],
+    completed: []
   };
 
   constructor(
-    private authService: AuthService,
     private router: Router,
-    private toastController: ToastController
+    private authService: AuthService,
+    private personalizedListService: PersonalizedListService
   ) {}
 
   async ngOnInit() {
-    const user = await this.authService.getUser();
-    if (user) {
-      this.user = user;
-    } else {
-      // Se não houver usuário logado, redireciona para a página de login
-      this.router.navigate(['/login']);
-    }
+    this.user = await this.authService.getUser();
+    this.loadLists();
+  }
+
+  async loadLists() {
+    this.lists.playLater = await this.personalizedListService.getList('PlayLater');
+    this.lists.currentlyPlaying = await this.personalizedListService.getList('CurrentlyPlaying');
+    this.lists.played = await this.personalizedListService.getList('Played');
+    this.lists.completed = await this.personalizedListService.getList('Completed');
   }
 
   async updateProfile() {
     try {
       await this.authService.updateUser(this.user);
-      const toast = await this.toastController.create({
-        message: 'Profile updated successfully',
-        duration: 2000,
-        color: 'success'
-      });
-      toast.present();
+      alert('Profile updated successfully');
     } catch (error) {
-      const toast = await this.toastController.create({
-        message: 'Failed to update profile',
-        duration: 2000,
-        color: 'danger'
-      });
-      toast.present();
+      console.error('Error updating profile', error);
+      alert('Failed to update profile');
     }
-  }
-
-  async removeAvatar() {
-    this.user.avatar = null;
-    await this.updateProfile();
   }
 
   async logout() {
@@ -66,7 +57,20 @@ export class ProfilePage implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  goBackToGames() {
+  async removeAvatar() {
+    this.user.avatar = null;
+  }
+
+  async removeFromList(gameId: string, listName: string) {
+    await this.personalizedListService.removeGameFromList(gameId, listName);
+    this.loadLists();
+  }
+
+  viewDetails(gameId: string) {
+    this.router.navigate(['/game-details', gameId]);
+  }
+
+  goToGames() {
     this.router.navigate(['/games']);
   }
 }

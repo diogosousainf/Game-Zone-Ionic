@@ -2,18 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonButton,
+  IonButton, IonButtons,
   IonCard, IonCardContent,
   IonCardHeader, IonCardSubtitle,
-  IonCardTitle,
+  IonCardTitle, IonCheckbox,
   IonContent,
-  IonHeader,
+  IonHeader, IonItem, IonLabel, IonList, IonListHeader,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 import {GameService} from "../services/game.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { IonicModule } from '@ionic/angular';
+import {PersonalizedListService} from "../services/personalized-list.service";
 
 
 
@@ -22,14 +23,21 @@ import { IonicModule } from '@ionic/angular';
   templateUrl: './game-details.page.html',
   styleUrls: ['./game-details.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonButton]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonList, IonListHeader, IonLabel, IonItem, IonCheckbox, IonButtons]
 })
 export class GameDetailsPage implements OnInit {
   game: any;
+  lists = {
+    playLater: false,
+    currentlyPlaying: false,
+    played: false,
+    completed: false
+  };
 
   constructor(
     private route: ActivatedRoute,
     private gameService: GameService,
+    private personalizedListService: PersonalizedListService,
     private router: Router
   ) {}
 
@@ -41,5 +49,27 @@ export class GameDetailsPage implements OnInit {
       // Handle case where gameId is null, e.g., navigate back to the games list
       this.router.navigate(['/games']);
     }
+  }
+
+  async addToLists() {
+    const gameId = this.game.id; // Assumindo que o ID do jogo está na propriedade `id`
+    if (this.lists.playLater) {
+      await this.personalizedListService.addGameToList(gameId, 'PlayLater');
+    }
+    if (this.lists.currentlyPlaying) {
+      await this.personalizedListService.addGameToList(gameId, 'CurrentlyPlaying');
+    }
+    if (this.lists.played) {
+      await this.personalizedListService.addGameToList(gameId, 'Played');
+    }
+    if (this.lists.completed) {
+      await this.personalizedListService.addGameToList(gameId, 'Completed');
+    }
+    alert('Game added to selected lists');
+  }
+
+
+  goBackToGames() {
+    this.router.navigate(['/games']);
   }
 }

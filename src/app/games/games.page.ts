@@ -5,6 +5,7 @@ import axios from 'axios';
 import {Router, RouterLink} from "@angular/router";
 import {GameService} from "../services/game.service";
 import {FormsModule} from "@angular/forms";
+import {AuthService} from "../services/auth.service";
 
 
 
@@ -43,10 +44,16 @@ export class GamesPage implements OnInit {
 
   constructor(
     private gameService: GameService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   async ngOnInit() {
+    const isLoggedIn = await this.authService.isLoggedIn();
+    if (!isLoggedIn) {
+      this.router.navigate(['/login']);
+      return;
+    }
     await this.loadGames();
   }
 
@@ -73,5 +80,9 @@ export class GamesPage implements OnInit {
 
   viewDetails(gameId: string) {
     this.router.navigate(['/game-details', gameId]);
+  }
+
+  goBackToProfile() {
+    this.router.navigate(['/profile']);
   }
 }

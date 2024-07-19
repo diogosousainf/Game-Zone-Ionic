@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{ game?.title }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBackToGames()">Back to Games</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -19,4 +22,27 @@
       <ion-button expand="block" color="primary" [href]="game.game_url" target="_blank">Play Now</ion-button>
     </ion-card-content>
   </ion-card>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Add to List</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Play Later</ion-label>
+      <ion-checkbox [(ngModel)]="lists.playLater"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Currently Playing</ion-label>
+      <ion-checkbox [(ngModel)]="lists.currentlyPlaying"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Played</ion-label>
+      <ion-checkbox [(ngModel)]="lists.played"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Completed</ion-label>
+      <ion-checkbox [(ngModel)]="lists.completed"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" (click)="addToLists()">Add to Selected Lists</ion-button>
 </ion-content>

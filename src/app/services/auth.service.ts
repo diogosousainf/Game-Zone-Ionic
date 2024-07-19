@@ -28,13 +28,11 @@ export class AuthService {
   }
 
   async register(user: any) {
-    // Verificar se o e-mail já está em uso
     const existingUserResponse = await axios.get(`http://localhost:3000/users?email=${user.email}`);
     if (existingUserResponse.data.length > 0) {
       throw new Error('Email already in use');
     }
 
-    // Criar o novo usuário se o e-mail não estiver em uso
     const response = await axios.post('http://localhost:3000/users', user);
     if (response.status === 201) {
       await this._storage?.set('user', response.data);
@@ -63,5 +61,10 @@ export class AuthService {
 
   async logout() {
     await this._storage?.remove('user');
+  }
+
+  async isLoggedIn() {
+    const user = await this._storage?.get('user');
+    return !!user;
   }
 }
