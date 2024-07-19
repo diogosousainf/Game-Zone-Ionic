@@ -18,4 +18,7 @@ export class GameService {
     const response = await axios.get(`${this.apiUrl}/${id}`);
     return response.data;
   }
+  async getGameDetails(id: string) {
+    return this.getGameById(id);
+  }
 }

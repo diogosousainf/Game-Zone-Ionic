@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Games</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToProfile()">Perfil</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -61,4 +64,6 @@
       </ion-label>
     </ion-item>
   </ion-list>
+
+  <ion-button expand="full" (click)="goToProfile()">Perfil</ion-button> <!-- Novo botão -->
 </ion-content>

@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import {AuthService} from "../services/auth.service";
-import {FormsModule} from "@angular/forms";
+import { AuthService } from "../services/auth.service";
+import { FormsModule } from "@angular/forms";
+import { StorageModule } from '../storage.module';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, StorageModule]
 })
 export class ProfilePage implements OnInit {
   user: any = {
@@ -67,6 +68,14 @@ export class ProfilePage implements OnInit {
   }
 
   goBackToGames() {
+    this.router.navigate(['/games']);
+  }
+
+  goToUserLists() {
+    this.router.navigate(['/user-lists']);
+  }
+
+  goToGamesList() {
     this.router.navigate(['/games']);
   }
 }

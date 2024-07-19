@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Minhas Listas de Jogos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment [(ngModel)]="segmentValue" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="playLater">
+      Jogar Mais Tarde
+    </ion-segment-button>
+    <ion-segment-button value="currentlyPlaying">
+      A Jogar Atualmente
+    </ion-segment-button>
+    <ion-segment-button value="played">
+      Jogado
+    </ion-segment-button>
+    <ion-segment-button value="completed">
+      Concluído
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngIf="segmentValue === 'playLater'">
+    <ion-item *ngFor="let game of gameLists.playLater">
+      {{ game.title }}
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="segmentValue === 'currentlyPlaying'">
+    <ion-item *ngFor="let game of gameLists.currentlyPlaying">
+      {{ game.title }}
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="segmentValue === 'played'">
+    <ion-item *ngFor="let game of gameLists.played">
+      {{ game.title }}
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="segmentValue === 'completed'">
+    <ion-item *ngFor="let game of gameLists.completed">
+      {{ game.title }}
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" color="primary" (click)="goToProfile()">Perfil</ion-button>
+</ion-content>
