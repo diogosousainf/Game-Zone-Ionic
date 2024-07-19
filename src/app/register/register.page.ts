@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonButton,
+  IonButton, IonButtons,
   IonContent,
   IonHeader,
   IonInput,
@@ -20,7 +20,7 @@ import {AuthService} from "../services/auth.service";
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonInput, IonButton]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonInput, IonButton, IonButtons]
 })
 export class RegisterPage  {
   name: string = '';
@@ -45,23 +45,19 @@ export class RegisterPage  {
       return;
     }
 
-    const user = {
-      name: this.name,
-      email: this.email,
-      password: this.password,
-      avatar: null
-    };
-
     try {
-      const newUser = await this.authService.register(user);
-      this.router.navigate(['/games']);
+      await this.authService.register({ name: this.name, email: this.email, password: this.password });
+      this.router.navigate(['/profile']); // Redirecionar para a página de perfil após registro bem-sucedido
     } catch (error) {
       const toast = await this.toastController.create({
-        message: 'Registration failed',
         duration: 2000,
         color: 'danger'
       });
       toast.present();
     }
+  }
+
+  goBackToLogin() {
+    this.router.navigate(['/login']);
   }
 }
