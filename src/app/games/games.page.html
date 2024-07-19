@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Games</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/profile">Profile</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let game of games">
+      <ion-thumbnail slot="start">
+        <img [src]="game.thumbnail" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ game.title }}</h2>
+        <p>{{ game.short_description }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
