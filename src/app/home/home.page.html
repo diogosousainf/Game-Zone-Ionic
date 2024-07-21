@@ -1,20 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Welcome to GameZone
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="welcome-container">
+    <img src="https://www.svgrepo.com/show/236434/game-controller-gamepad.svg" alt="Game Controller" class="welcome-image">
+    <h1>Welcome to GameZone</h1>
+    <p>Your ultimate destination for discovering and playing the best games.</p>
+    <ion-button expand="block" color="primary" routerLink="/login">Login</ion-button>
+    <ion-button expand="block" color="secondary" routerLink="/register">Register</ion-button>
   </div>
 </ion-content>

@@ -12,18 +12,29 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import { ToastController } from '@ionic/angular';
-import {Router, RouterLink} from '@angular/router';
-import {AuthService} from "../services/auth.service";
-
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonInput, IonButton, RouterLink]
+  imports: [
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    CommonModule,
+    FormsModule,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonButton,
+    RouterLink
+  ]
 })
-export class LoginPage  {
+export class LoginPage implements OnInit {
   email: string = '';
   password: string = '';
 
@@ -33,7 +44,24 @@ export class LoginPage  {
     private toastController: ToastController
   ) {}
 
+  async ngOnInit() {
+    const isLoggedIn = await this.authService.isLoggedIn();
+    if (isLoggedIn) {
+      this.router.navigate(['/profile']);
+    }
+  }
+
   async login() {
+    if (!this.email || !this.password) {
+      const toast = await this.toastController.create({
+        message: 'Email and password are required',
+        duration: 2000,
+        color: 'danger'
+      });
+      toast.present();
+      return;
+    }
+
     try {
       await this.authService.login(this.email, this.password);
       this.router.navigate(['/profile']); // Redirecionar para a página de perfil após login bem-sucedido

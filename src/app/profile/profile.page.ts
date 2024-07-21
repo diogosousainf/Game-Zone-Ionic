@@ -1,19 +1,18 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit} from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { PersonalizedListService } from '../services/personalized-list.service';
 import { FormsModule } from '@angular/forms';
-import {CommonModule} from "@angular/common";
-import {IonicModule} from "@ionic/angular"; // Certifique-se de importar FormsModule
-
+import { CommonModule, NgOptimizedImage } from "@angular/common";
+import { IonicModule, ToastController } from "@ionic/angular";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule], // Adicione FormsModule
-  schemas: [CUSTOM_ELEMENTS_SCHEMA] // AdiModule
+  imports: [IonicModule, CommonModule, FormsModule, NgOptimizedImage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProfilePage implements OnInit {
   user: any = {};
@@ -27,7 +26,8 @@ export class ProfilePage implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private personalizedListService: PersonalizedListService
+    private personalizedListService: PersonalizedListService,
+    private toastController: ToastController
   ) {}
 
   async ngOnInit() {
@@ -47,29 +47,41 @@ export class ProfilePage implements OnInit {
     this.lists.completed = await this.personalizedListService.getList('Completed');
   }
 
+  async presentToast(message: string, color: string = 'success') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      color,
+    });
+    await toast.present();
+  }
+
   async updateProfile() {
     try {
       await this.authService.updateUser(this.user);
-      alert('Profile updated successfully');
+      this.presentToast('Profile updated successfully');
     } catch (error) {
       console.error('Error updating profile', error);
-      alert('Failed to update profile');
+      this.presentToast('Failed to update profile', 'danger');
     }
   }
 
   async logout() {
     await this.authService.logout();
     this.router.navigate(['/login']);
+    this.presentToast('Logged out successfully');
   }
 
   async removeAvatar() {
     this.user.avatar = null;
     await this.authService.updateUser(this.user);
+    this.presentToast('Avatar removed successfully');
   }
 
   async removeFromList(gameId: string, listName: string) {
     await this.personalizedListService.removeGameFromList(gameId, listName);
     this.loadLists();
+    this.presentToast(`Removed from ${listName} list`);
   }
 
   viewDetails(gameId: string) {
@@ -78,5 +90,9 @@ export class ProfilePage implements OnInit {
 
   goToGames() {
     this.router.navigate(['/games']);
+  }
+
+  onAvatarUrlChange() {
+    // This function will trigger change detection and update the avatar image in the template
   }
 }

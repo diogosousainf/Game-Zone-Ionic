@@ -1,7 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Games</ion-title>
-    <ion-button (click)="goBackToProfile()">Profile</ion-button>
+    <ion-buttons slot="end">
+      <ion-button (click)="goBackToProfile()">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        Profile
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
