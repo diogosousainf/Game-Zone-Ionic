@@ -37,10 +37,10 @@
     },
     {
       "id": "0511",
-      "name": "Diogo Sousa",
+      "name": "Diogo Costa",
       "email": "diogosousainf@gmail.com",
       "password": "atec",
-      "avatar": null
+      "avatar": "https://fpfimagehandler.fpf.pt/FPFImageHandler.ashx?type=Person&id=3459348&op=t&w=325&h=378"
     },
     {
       "id": "4072",
@@ -136,16 +136,16 @@
       "createDate": "2024-07-19T20:53:39.142Z"
     },
     {
-      "id": "4cb0",
-      "userId": "0511",
-      "gameId": "521",
-      "createDate": "2024-07-21T09:00:08.220Z"
-    },
-    {
       "id": "4a21",
       "userId": "da34",
       "gameId": "5",
       "createDate": "2024-07-21T09:47:19.035Z"
+    },
+    {
+      "id": "5588",
+      "userId": "da34",
+      "gameId": "523",
+      "createDate": "2024-07-21T09:53:52.947Z"
     }
   ],
   "usersListCurrentlyPlaying": [
@@ -177,6 +177,12 @@
       "userId": "a79f",
       "gameId": "5",
       "createDate": "2024-07-21T09:31:24.465Z"
+    },
+    {
+      "id": "1af2",
+      "userId": "0511",
+      "gameId": "12",
+      "createDate": "2024-07-21T10:32:11.992Z"
     }
   ],
   "usersListPlayed": [
@@ -211,6 +217,12 @@
       "userId": "4072",
       "gameId": "380",
       "createDate": "2024-07-19T20:53:39.160Z"
+    },
+    {
+      "id": "0a1a",
+      "userId": "da34",
+      "gameId": "347",
+      "createDate": "2024-07-21T10:17:30.640Z"
     }
   ],
   "platform": [

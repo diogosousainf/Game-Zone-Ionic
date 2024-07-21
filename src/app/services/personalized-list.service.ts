@@ -58,7 +58,8 @@ export class PersonalizedListService {
       throw new Error('User not logged in');
     }
 
-    const list = await this.getListWithDetails(listName);
+    const response = await axios.get(`http://localhost:3000/usersList${listName}?userId=${user.id}`);
+    const list = response.data;
     const listItem = list.find((item: any) => item.gameId === gameId);
     if (listItem) {
       await axios.delete(`http://localhost:3000/usersList${listName}/${listItem.id}`);
