@@ -47,6 +47,12 @@
       "name": "Luis Sousa",
       "email": "luis@gmail.com",
       "password": "123456"
+    },
+    {
+      "id": "da34",
+      "name": "Pedro",
+      "email": "pedro@gmail.com",
+      "password": "atec"
     }
   ],
   "usersListPlayLater": [

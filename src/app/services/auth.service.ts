@@ -18,6 +18,12 @@ export class AuthService {
   }
 
   async login(email: string, password: string) {
+    if (!email || !password) {
+      throw new Error('Email and password are required');
+    }
+
+    await this.ensureStorageIsReady();
+
     const response = await axios.get(`http://localhost:3000/users?email=${email}&password=${password}`);
     if (response.data.length > 0) {
       await this._storage?.set('user', response.data[0]);
@@ -28,6 +34,8 @@ export class AuthService {
   }
 
   async register(user: any) {
+    await this.ensureStorageIsReady();
+
     const existingUserResponse = await axios.get(`http://localhost:3000/users?email=${user.email}`);
     if (existingUserResponse.data.length > 0) {
       throw new Error('Email already in use');
@@ -43,10 +51,13 @@ export class AuthService {
   }
 
   async getUser() {
+    await this.ensureStorageIsReady();
     return await this._storage?.get('user');
   }
 
   async updateUser(user: any) {
+    await this.ensureStorageIsReady();
+
     if (!user.id) {
       throw new Error('User ID is required to update profile');
     }
@@ -60,11 +71,19 @@ export class AuthService {
   }
 
   async logout() {
+    await this.ensureStorageIsReady();
     await this._storage?.remove('user');
   }
 
   async isLoggedIn() {
+    await this.ensureStorageIsReady();
     const user = await this._storage?.get('user');
     return !!user;
+  }
+
+  private async ensureStorageIsReady() {
+    if (!this._storage) {
+      await this.init();
+    }
   }
 }
