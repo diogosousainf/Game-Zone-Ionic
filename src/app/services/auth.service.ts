@@ -7,6 +7,7 @@ import axios from 'axios';
 })
 export class AuthService {
   private _storage: Storage | null = null;
+  private _user: any = null;
 
   constructor(private storage: Storage) {
     this.init();
@@ -15,27 +16,21 @@ export class AuthService {
   async init() {
     const storage = await this.storage.create();
     this._storage = storage;
+    this._user = await this._storage?.get('user');
   }
 
   async login(email: string, password: string) {
-    if (!email || !password) {
-      throw new Error('Email and password are required');
-    }
-
-    await this.ensureStorageIsReady();
-
     const response = await axios.get(`http://localhost:3000/users?email=${email}&password=${password}`);
     if (response.data.length > 0) {
-      await this._storage?.set('user', response.data[0]);
-      return response.data[0];
+      this._user = response.data[0];
+      await this._storage?.set('user', this._user);
+      return this._user;
     } else {
       throw new Error('Invalid credentials');
     }
   }
 
   async register(user: any) {
-    await this.ensureStorageIsReady();
-
     const existingUserResponse = await axios.get(`http://localhost:3000/users?email=${user.email}`);
     if (existingUserResponse.data.length > 0) {
       throw new Error('Email already in use');
@@ -43,47 +38,38 @@ export class AuthService {
 
     const response = await axios.post('http://localhost:3000/users', user);
     if (response.status === 201) {
-      await this._storage?.set('user', response.data);
-      return response.data;
+      this._user = response.data;
+      await this._storage?.set('user', this._user);
+      return this._user;
     } else {
       throw new Error('Registration failed');
     }
   }
 
   async getUser() {
-    await this.ensureStorageIsReady();
-    return await this._storage?.get('user');
+    return this._user;
   }
 
   async updateUser(user: any) {
-    await this.ensureStorageIsReady();
-
     if (!user.id) {
       throw new Error('User ID is required to update profile');
     }
     const response = await axios.put(`http://localhost:3000/users/${user.id}`, user);
     if (response.status === 200) {
-      await this._storage?.set('user', response.data);
-      return response.data;
+      this._user = response.data;
+      await this._storage?.set('user', this._user);
+      return this._user;
     } else {
       throw new Error('Update failed');
     }
   }
 
   async logout() {
-    await this.ensureStorageIsReady();
+    this._user = null;
     await this._storage?.remove('user');
   }
 
   async isLoggedIn() {
-    await this.ensureStorageIsReady();
-    const user = await this._storage?.get('user');
-    return !!user;
-  }
-
-  private async ensureStorageIsReady() {
-    if (!this._storage) {
-      await this.init();
-    }
+    return !!this._user;
   }
 }

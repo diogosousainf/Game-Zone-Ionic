@@ -164,6 +164,12 @@
       "userId": "4072",
       "gameId": "380",
       "createDate": "2024-07-19T20:53:39.148Z"
+    },
+    {
+      "id": "2e73",
+      "userId": "a79f",
+      "gameId": "5",
+      "createDate": "2024-07-21T09:31:24.465Z"
     }
   ],
   "usersListPlayed": [
@@ -172,6 +178,12 @@
       "userId": "4072",
       "gameId": "380",
       "createDate": "2024-07-19T20:53:39.154Z"
+    },
+    {
+      "id": "2f49",
+      "userId": "a79f",
+      "gameId": "5",
+      "createDate": "2024-07-21T09:31:24.473Z"
     }
   ],
   "usersListCompleted": [
