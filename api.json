@@ -52,7 +52,8 @@
       "id": "da34",
       "name": "Pedro",
       "email": "pedro@gmail.com",
-      "password": "atec"
+      "password": "atec",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFTOOCgCs1JleZ8daZ81Z9Y43AlFJpJ-rKpw&s"
     }
   ],
   "usersListPlayLater": [
@@ -198,6 +199,12 @@
       "userId": "4072",
       "gameId": "380",
       "createDate": "2024-07-19T20:53:39.160Z"
+    },
+    {
+      "id": "a40d",
+      "userId": "da34",
+      "gameId": "5",
+      "createDate": "2024-07-21T09:37:48.653Z"
     }
   ],
   "platform": [

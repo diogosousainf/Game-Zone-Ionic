@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { PersonalizedListService } from '../services/personalized-list.service';
 import { FormsModule } from '@angular/forms';
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {IonicModule} from "@ionic/angular"; // Certifique-se de importar FormsModule
 
 
@@ -12,7 +12,7 @@ import {IonicModule} from "@ionic/angular"; // Certifique-se de importar FormsMo
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule], // Adicione FormsModule
+  imports: [IonicModule, CommonModule, FormsModule, NgOptimizedImage], // Adicione FormsModule
   schemas: [CUSTOM_ELEMENTS_SCHEMA] // AdiModule
 })
 export class ProfilePage implements OnInit {
@@ -78,5 +78,8 @@ export class ProfilePage implements OnInit {
 
   goToGames() {
     this.router.navigate(['/games']);
+  }
+
+  onAvatarUrlChange() {
   }
 }
