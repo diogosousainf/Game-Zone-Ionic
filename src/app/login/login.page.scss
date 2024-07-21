@@ -1,0 +1,62 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  background: linear-gradient(to right, #2a2a2a, #1f1f1f);
+}
+
+.custom-item {
+  width: 90%;
+  max-width: 400px;
+  margin-bottom: 20px;
+  --highlight-color-focused: #ff4e50; /* Cor de destaque para o campo focado */
+  --placeholder-color: #999; /* Cor do placeholder */
+  --background: null; /* Cor de fundo */
+}
+
+ion-label {
+  color: #ffffff;
+}
+
+ion-input {
+  color: #ffffff;
+}
+
+ion-button {
+  --border-radius: 20px;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --transition: background 0.3s ease;
+  --color: white;
+}
+
+ion-button.custom-button {
+  --border-radius: 20px;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --transition: background 0.3s ease;
+  width: 90%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+ion-button.login-button {
+  --background: linear-gradient(to right, #ff7e5f, #da6811);
+  --background-activated: linear-gradient(to right, #ff6a4d, #fd9a6b);
+  --background-focused: linear-gradient(to right, #ff6a4d, #fd9a6b);
+  --color: #ffffff;
+  
+}
+
+ion-button.register-button {
+  --background: linear-gradient(to right, #ff7e5f, #c89820);
+  --border-color: #ff4e50;
+  --color: #ffffff;
+}
+
+ion-button.register-button:hover {
+  --background: rgba(255, 78, 80, 0.1);
+}

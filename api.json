@@ -183,6 +183,12 @@
       "userId": "0511",
       "gameId": "12",
       "createDate": "2024-07-21T10:32:11.992Z"
+    },
+    {
+      "id": "3b00",
+      "userId": "0511",
+      "gameId": "9",
+      "createDate": "2024-07-21T11:07:34.468Z"
     }
   ],
   "usersListPlayed": [
@@ -223,6 +229,12 @@
       "userId": "da34",
       "gameId": "347",
       "createDate": "2024-07-21T10:17:30.640Z"
+    },
+    {
+      "id": "fc41",
+      "userId": "0511",
+      "gameId": "573",
+      "createDate": "2024-07-21T11:07:40.684Z"
     }
   ],
   "platform": [
