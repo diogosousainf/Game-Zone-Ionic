@@ -1,19 +1,18 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit} from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { PersonalizedListService } from '../services/personalized-list.service';
 import { FormsModule } from '@angular/forms';
-import {CommonModule, NgOptimizedImage} from "@angular/common";
-import {IonicModule} from "@ionic/angular"; // Certifique-se de importar FormsModule
-
+import { CommonModule, NgOptimizedImage } from "@angular/common";
+import { IonicModule } from "@ionic/angular";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, NgOptimizedImage], // Adicione FormsModule
-  schemas: [CUSTOM_ELEMENTS_SCHEMA] // AdiModule
+  imports: [IonicModule, CommonModule, FormsModule, NgOptimizedImage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProfilePage implements OnInit {
   user: any = {};
@@ -81,5 +80,6 @@ export class ProfilePage implements OnInit {
   }
 
   onAvatarUrlChange() {
+    // This function will trigger change detection and update the avatar image in the template
   }
 }

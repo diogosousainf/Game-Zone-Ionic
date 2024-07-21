@@ -140,6 +140,12 @@
       "userId": "0511",
       "gameId": "521",
       "createDate": "2024-07-21T09:00:08.220Z"
+    },
+    {
+      "id": "4a21",
+      "userId": "da34",
+      "gameId": "5",
+      "createDate": "2024-07-21T09:47:19.035Z"
     }
   ],
   "usersListCurrentlyPlaying": [
@@ -185,6 +191,12 @@
       "userId": "a79f",
       "gameId": "5",
       "createDate": "2024-07-21T09:31:24.473Z"
+    },
+    {
+      "id": "aee5",
+      "userId": "da34",
+      "gameId": "380",
+      "createDate": "2024-07-21T09:51:47.389Z"
     }
   ],
   "usersListCompleted": [
@@ -199,12 +211,6 @@
       "userId": "4072",
       "gameId": "380",
       "createDate": "2024-07-19T20:53:39.160Z"
-    },
-    {
-      "id": "a40d",
-      "userId": "da34",
-      "gameId": "5",
-      "createDate": "2024-07-21T09:37:48.653Z"
     }
   ],
   "platform": [

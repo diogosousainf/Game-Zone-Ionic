@@ -14,9 +14,8 @@ export class AuthService {
   }
 
   async init() {
-    const storage = await this.storage.create();
-    this._storage = storage;
-    this._user = await this._storage?.get('user');
+    this._storage = await this.storage.create();
+    this._user = await this.getUser();
   }
 
   async login(email: string, password: string) {
@@ -47,7 +46,7 @@ export class AuthService {
   }
 
   async getUser() {
-    return this._user;
+    return await this._storage?.get('user');
   }
 
   async updateUser(user: any) {

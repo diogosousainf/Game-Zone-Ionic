@@ -52,7 +52,7 @@
         </ion-list-header>
         <ion-item *ngFor="let game of lists.playLater">
           <ion-thumbnail slot="start">
-            <img [src]="game.thumbnail">
+            <img [src]="game.thumbnail" alt="Game Thumbnail">
           </ion-thumbnail>
           <ion-label (click)="viewDetails(game.gameId)">{{ game.title }}</ion-label>
           <ion-button (click)="removeFromList(game.gameId, 'PlayLater')">Remove</ion-button>
@@ -63,7 +63,7 @@
         </ion-list-header>
         <ion-item *ngFor="let game of lists.currentlyPlaying">
           <ion-thumbnail slot="start">
-            <img [src]="game.thumbnail">
+            <img [src]="game.thumbnail" alt="Game Thumbnail">
           </ion-thumbnail>
           <ion-label (click)="viewDetails(game.gameId)">{{ game.title }}</ion-label>
           <ion-button (click)="removeFromList(game.gameId, 'CurrentlyPlaying')">Remove</ion-button>
@@ -74,7 +74,7 @@
         </ion-list-header>
         <ion-item *ngFor="let game of lists.played">
           <ion-thumbnail slot="start">
-            <img [src]="game.thumbnail">
+            <img [src]="game.thumbnail" alt="Game Thumbnail">
           </ion-thumbnail>
           <ion-label (click)="viewDetails(game.gameId)">{{ game.title }}</ion-label>
           <ion-button (click)="removeFromList(game.gameId, 'Played')">Remove</ion-button>
@@ -85,7 +85,7 @@
         </ion-list-header>
         <ion-item *ngFor="let game of lists.completed">
           <ion-thumbnail slot="start">
-            <img ngSrc="game.thumbnail" alt="">
+            <img [src]="game.thumbnail" alt="Game Thumbnail">
           </ion-thumbnail>
           <ion-label (click)="viewDetails(game.gameId)">{{ game.title }}</ion-label>
           <ion-button (click)="removeFromList(game.gameId, 'Completed')">Remove</ion-button>
