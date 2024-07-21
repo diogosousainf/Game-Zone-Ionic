@@ -1,17 +1,9 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Welcome to GameZone
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <div class="welcome-container">
     <img src="https://www.svgrepo.com/show/236434/game-controller-gamepad.svg" alt="Game Controller" class="welcome-image">
     <h1>Welcome to GameZone</h1>
     <p>Your ultimate destination for discovering and playing the best games.</p>
-    <ion-button expand="block" color="primary" routerLink="/login">Login</ion-button>
-    <ion-button expand="block" color="secondary" routerLink="/register">Register</ion-button>
+    <ion-button expand="block" class="custom-button login-button" routerLink="/login">Login</ion-button>
+    <p class="register-prompt">Don't have an account yet? <a routerLink="/register" class="register-link">Sign up</a></p>
   </div>
 </ion-content>
