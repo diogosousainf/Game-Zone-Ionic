@@ -60,7 +60,7 @@
       "name": "joaobarbosa",
       "email": "joaob@gmail.com",
       "password": "12345678",
-      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO9P1_pLzI2EM_vX5bsmNVKCVFi0ys7ulN1Q&s"
+      "avatar": "https://images3.memedroid.com/images/UPLOADED410/6369fd6921d66.webp"
     }
   ],
   "usersListPlayLater": [
@@ -155,12 +155,6 @@
       "createDate": "2024-07-21T09:53:52.947Z"
     },
     {
-      "id": "5106",
-      "userId": "927a",
-      "gameId": "5",
-      "createDate": "2024-07-22T18:37:02.218Z"
-    },
-    {
       "id": "81ff",
       "userId": "0511",
       "gameId": "5",
@@ -202,6 +196,12 @@
       "userId": "0511",
       "gameId": "347",
       "createDate": "2024-07-22T18:47:41.656Z"
+    },
+    {
+      "id": "db75",
+      "userId": "927a",
+      "gameId": "347",
+      "createDate": "2024-07-22T19:32:45.903Z"
     }
   ],
   "usersListPlayed": [
