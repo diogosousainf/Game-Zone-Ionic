@@ -63,7 +63,7 @@ export class GamesPage implements OnInit {
       _order: this.sortOrder
     };
     if (this.searchQuery) {
-      params.title_like = this.searchQuery;
+      params.title = this.searchQuery;
     }
     if (this.platformFilter) {
       params.platform = this.platformFilter;

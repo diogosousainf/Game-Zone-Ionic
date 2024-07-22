@@ -36,8 +36,16 @@ export class ProfilePage implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
+    await this.loadData();
+  }
+
+  ionViewWillEnter() {
+    this.loadData();
+  }
+
+  async loadData() {
     this.user = await this.authService.getUser();
-    this.loadLists();
+    await this.loadLists();
   }
 
   async loadLists() {

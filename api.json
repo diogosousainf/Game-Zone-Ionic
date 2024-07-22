@@ -54,6 +54,13 @@
       "email": "pedro@gmail.com",
       "password": "atec",
       "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFTOOCgCs1JleZ8daZ81Z9Y43AlFJpJ-rKpw&s"
+    },
+    {
+      "id": "927a",
+      "name": "joaobarbosa",
+      "email": "joaob@gmail.com",
+      "password": "12345678",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO9P1_pLzI2EM_vX5bsmNVKCVFi0ys7ulN1Q&s"
     }
   ],
   "usersListPlayLater": [
@@ -146,6 +153,18 @@
       "userId": "da34",
       "gameId": "523",
       "createDate": "2024-07-21T09:53:52.947Z"
+    },
+    {
+      "id": "5106",
+      "userId": "927a",
+      "gameId": "5",
+      "createDate": "2024-07-22T18:37:02.218Z"
+    },
+    {
+      "id": "81ff",
+      "userId": "0511",
+      "gameId": "5",
+      "createDate": "2024-07-22T18:47:34.987Z"
     }
   ],
   "usersListCurrentlyPlaying": [
@@ -179,16 +198,10 @@
       "createDate": "2024-07-21T09:31:24.465Z"
     },
     {
-      "id": "1af2",
+      "id": "6a06",
       "userId": "0511",
-      "gameId": "12",
-      "createDate": "2024-07-21T10:32:11.992Z"
-    },
-    {
-      "id": "3b00",
-      "userId": "0511",
-      "gameId": "9",
-      "createDate": "2024-07-21T11:07:34.468Z"
+      "gameId": "347",
+      "createDate": "2024-07-22T18:47:41.656Z"
     }
   ],
   "usersListPlayed": [
@@ -231,10 +244,10 @@
       "createDate": "2024-07-21T10:17:30.640Z"
     },
     {
-      "id": "fc41",
+      "id": "cfd1",
       "userId": "0511",
-      "gameId": "573",
-      "createDate": "2024-07-21T11:07:40.684Z"
+      "gameId": "347",
+      "createDate": "2024-07-22T18:47:41.665Z"
     }
   ],
   "platform": [

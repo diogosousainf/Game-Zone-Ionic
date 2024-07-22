@@ -9,14 +9,13 @@ import {
   IonContent,
   IonHeader, IonItem, IonLabel, IonList, IonListHeader,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  ToastController
 } from '@ionic/angular/standalone';
 import {GameService} from "../services/game.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { IonicModule } from '@ionic/angular';
 import {PersonalizedListService} from "../services/personalized-list.service";
-
-
 
 @Component({
   selector: 'app-game-details',
@@ -38,7 +37,8 @@ export class GameDetailsPage implements OnInit {
     private route: ActivatedRoute,
     private gameService: GameService,
     private personalizedListService: PersonalizedListService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
   ) {}
 
   async ngOnInit() {
@@ -65,9 +65,17 @@ export class GameDetailsPage implements OnInit {
     if (this.lists.completed) {
       await this.personalizedListService.addGameToList(gameId, 'Completed');
     }
-    alert('Game added to selected lists');
+    this.showToast('Game added to selected lists');
   }
 
+  async showToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
 
   goBackToGames() {
     this.router.navigate(['/games']);
